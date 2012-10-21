@@ -1,16 +1,29 @@
 <script src="/reroutesf/bootstrap/js/bootstrap-tooltip.js "></script>
 <script>
-$(document).ready(function() {
+$(function() {
+
+	var isVisible = false;
+    var clickedAway = false;
 	$(".busRoute").popover({
 		placement:'right',
 		trigger:'manual',
 		title:'Bus Route',
-		content:"aa"
+		content:"<img src='http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco&amp;size=300x640&amp;maptype=terrain&amp;sensor=false&amp;markers=color:green%7Clabel:S%7C37.791982,-122.408037&amp;markers=color:blue%7Clabel:%7C37.725571,-122.394272&amp;markers=color:green%7Clabel:E%7C37.783537,-122.415641&amp;path=color:0x0000ff%7Cweight:5%7C37.791982,-122.408037%7C37.725571,-122.394272%7C37.783537,-122.415641'>"
 	}).click(function(e){
 		$(this).popover('show');
 		isVisible = true;
 		e.preventDefault();
 	});
+
+
+    $(document).click(function(e){
+        if(isVisible & clickedAway) {
+            $(".busRoute").popover('hide');
+            isVisible = clickedAway = false;
+        } else {
+            clickedAway = true;
+        }
+    });
 });
 </script>
 
