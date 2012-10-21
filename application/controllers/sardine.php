@@ -16,15 +16,26 @@ class sardine extends  CI_Controller
 		$this->load->view('mainpage',$data);
 		return;
 	}
+	
+	public function getData()	
+	{
+		$form= $this->input->post();
+		$startStop = $form['startStop'];
+		$endStop = $form['endStop'];
+		$this->showRoutes($startStop,$endStop);
+		
+	}
 
 	public function showRoutes($startStop,$endStop)
 	{
 		$startArr	= $this->backend->getNearby($startStop);	
 		$endArr		= $this->backend->getNearby($endStop);
-		$time		= time();	
-	
-		$halfHour	= date("G",$time)*2;
-		$halfHour	+= (date("i",$time)>30)?1:0; 
+		$hour 		= date('H');
+		$min		= date('i');
+		//print_r($startArr);
+		//print_r($endArr);
+		//exit;
+		
 		$routes		= array();
 		foreach($startArr as $stop1)
 		{
@@ -33,9 +44,11 @@ class sardine extends  CI_Controller
 				$routeNums	= $this->backend->getRoutes($stop1,$stop2);
 				foreach($routeNums as $routeNum)
 				{
-					$duration	= $this->backend->getDuration($routeNum,$stop1,$stop2);
-					$load		= $this->backend->getLoad($halfHour,$stop1);
+					$duration	= $this->backend->getTimeTakeBetweenStops($stop1, $stop2, $routeNum, $hour, $min);
+					$load		= $this->backend->getLoad($stop1,$hour,$min);
 					$routes[]	= array(
+					'startStop'	=> $stop1,
+					'endStop'	=> $stop2,
 					'routeNum'	=> $routeNum,
 					'duration'	=> $duration,
 					'load'		=> $load
@@ -44,8 +57,20 @@ class sardine extends  CI_Controller
 			}
 		}	
 		$data['routes']		= $routes;
+	//	print_r($data);
 		$this->load->view('routeinfo',$data);
 		return;
+	}
+
+	public function test()
+	{
+		$startStop = 'PRESIDIO AVE&CLAY ST SE-NS/P';
+		$endStop = 'FILLMORE ST&PINE ST NE-FS/BZ'; 
+		
+		$this->showRoutes($startStop,$endStop);
+		//echo 'test';
+		//$this->backend->getNearby('SUTTER ST&LARKIN ST NW-FS/BZ');
+		//$this->backend->getRoute($startStop, $endStop);
 	}
 
 }
