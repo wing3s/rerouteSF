@@ -11,10 +11,18 @@ class backend_lans extends CI_Model
 
 	public function getAllStopName()
 	{
-		$allStopNameArr	= array(
-			'aaa',
-			'bbb',
-			);
+		$allStopNameArr = array();
+		
+		$sql = "SELECT DISTINCT stop_name
+			FROM dw_sfmta_bus_load_matrix";
+		echo "sql=$sql";
+                echo "\n";
+
+		$result = $this->dbSF->query($sql)->result_array();
+		foreach($result as $row) {
+			array_push($allStopNameArr, $row['stop_name']);
+		}
+		
 		return $allStopNameArr;
 	}
 
