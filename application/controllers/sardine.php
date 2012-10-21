@@ -21,7 +21,10 @@ class sardine extends  CI_Controller
 	{
 		$startArr	= $this->backend->getNearby($startStop);	
 		$endArr		= $this->backend->getNearby($endStop);
-		
+		$time		= time();	
+	
+		$halfHour	= date("G",$time)*2;
+		$halfHour	+= (date("i",$time)>30)?1:0; 
 		$routes		= array();
 		foreach($startArr as $stop1)
 		{
@@ -31,7 +34,7 @@ class sardine extends  CI_Controller
 				foreach($routeNums as $routeNum)
 				{
 					$duration	= $this->backend->getDuration($routeNum,$stop1,$stop2);
-					$load		= $this->backend->getLoad($stop1);
+					$load		= $this->backend->getLoad($halfHour,$stop1);
 					$routes[]	= array(
 					'routeNum'	=> $routeNum,
 					'duration'	=> $duration,
