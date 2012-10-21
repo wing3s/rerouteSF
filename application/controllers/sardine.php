@@ -17,5 +17,14 @@ class sardine extends  CI_Controller
 		return;
 	}
 
+	public function showRoutes($startStop,$endStop)
+	{
+		$startArr	= $this->backend->getNearby($startStop);	
+		$endArr		= $this->backend->getNearby($endStop);
+		
+			
+
+	}
+
 }
 ?>
