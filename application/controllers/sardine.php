@@ -22,8 +22,27 @@ class sardine extends  CI_Controller
 		$startArr	= $this->backend->getNearby($startStop);	
 		$endArr		= $this->backend->getNearby($endStop);
 		
-			
-
+		$routes		= array();
+		foreach($startArr as $stop1)
+		{
+			foreach($endArr as $stop2)
+			{
+				$routeNums	= $this->backend->getRoutes($stop1,$stop2);
+				foreach($routeNums as $routeNum)
+				{
+					$duration	= $this->backend->getDuration($routeNum,$stop1,$stop2);
+					$load		= $this->backend->getLoad($stop1);
+					$routes[]	= array(
+					'routeNum'	=> $routeNum,
+					'duration'	=> $duration,
+					'load'		=> $load
+					);
+				}
+			}
+		}	
+		$data['routes']		= $routes;
+		$this->load->view('routeinfo',$data);
+		return;
 	}
 
 }

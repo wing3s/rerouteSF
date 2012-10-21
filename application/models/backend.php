@@ -34,9 +34,9 @@ class backend extends CI_Model
 		return 10;
 	}
 
-	public function getRoute($stop1, $stop2)
+	public function getRoutes($stop1, $stop2)
 	{
-		return 38;
+		return array(38,2);
 	}
 
 	public function getLoad($stop)
