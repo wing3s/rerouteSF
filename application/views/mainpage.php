@@ -10,6 +10,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/reroutesf/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
+<script type='text/javascript'>
+$(document).ready(function(){
+	var pathname = window.location.pathname;
+	var startStop	= "";
+	var endStop		= "";
+	$(".startStop").click(function(){
+		startStop	= $(this).html();
+	});
+	$(".endStop").click(function(){
+		endStop		= $(this).html();
+		console.log(startStop,endStop);
+		console.log(pathname);
+	});
+});
+
+</script>
+<style type="text/css">
+body {
+	text-align: center;
+}
+</style>
+<title>Reroute SF</title>
 
 <body>
 <div class='row'>
@@ -21,7 +43,7 @@
 				<?php
 					foreach($allStopName as $stopName)
 					{
-						echo "<li><a tabindex='-1' href='#'>$stopName</a></li>";
+						echo "<li><a class='startStop' tabindex='-1' href='#'>$stopName</a></li>";
 					}
 				?>
 			</ul>
@@ -37,12 +59,16 @@
 				<?php
 					foreach($allStopName as $stopName)
 					{
-						echo "<li><a tabindex='-1' href='#'>$stopName</a></li>";
+						echo "<li><a class='endStop' tabindex='-1' href='#'>$stopName</a></li>";
 					}
 				?>
 			</ul>
 		</li>
 	</ul>
+</div>
+
+<div id='routeinfo'>
+
 </div>
 </body>
 </html>
