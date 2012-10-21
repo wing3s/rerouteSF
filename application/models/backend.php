@@ -18,5 +18,40 @@ class backend extends CI_Model
 		return $allStopNameArr;
 	}
 
+	public function getNearby($stop)
+	{
+		$stopArr	= array(
+			'111',
+			'222',
+			'333',
+			);
+		return $stopArr;
+	}
+
+	public function getDuration($stop1, $stop2)
+	{
+
+		return 10;
+	}
+
+	public function getRoute($stop1, $stop2)
+	{
+		return 38;
+	}
+
+	public function getLoad($stop)
+	{
+		return 1;
+	}
+
+	public function getStopsBetween($stop1,$stop2)
+	{
+		$stopArr	= array(
+			'777',
+			'888',
+			'999',
+			);
+		return;
+	}
 }
 ?>
