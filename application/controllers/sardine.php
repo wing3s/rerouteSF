@@ -38,7 +38,7 @@ class sardine extends  CI_Controller
 					$routes[]	= array(
 					'routeNum'	=> $routeNum,
 					'duration'	=> $duration,
-					'load'		=> $load
+					'load'		=> $load,
 					);
 				}
 			}
