@@ -45,6 +45,10 @@ class backend extends CI_Model
 
 	public function getNearby($stop)
 	{
+		$stops	= $this->getAllStopName();
+		return array("PRESIDIO AVE&CLAY ST SE-NS/P",
+					"FILLMORE ST&PINE ST NE-FS/BZ");
+	//	return array('SUTTER ST&SANSOME ST NW-FS/B', 'SUTTER ST&SANSOME ST NW- - EOL');
 		$stop_nearstop = array();
 		foreach($this->stop_location as $stop_name => $location)
 		{
@@ -99,7 +103,7 @@ class backend extends CI_Model
 			$halfHourAdjust = 0;
 		}
 		$halfhour_of_day = $hour * 2 + $halfHourAdjust;
-
+	
 		$loadarray = array();
 		$max_boundary = $halfhour_of_day / 2 + 2;
 		$min_boundary = $halfhour_of_day / 2 - 2;
@@ -111,8 +115,14 @@ class backend extends CI_Model
 			$loadarray[$row['avg_curr_psgr_load']] = $row['avg_curr_psgr_load'];
 			$loadarray[$row['avg_psgr_load_idx']] = $row['avg_psgr_load_idx'];
 			$loadarray[$row['avg_seat_load_idx']] = $row['avg_seat_load_idx'];
+		
+			if($row)
+			{
+				return $row['avg_psgr_load_idx'];
+			} else {
+				return "0.7";
+			}
 		}
-		return $row['avg_psgr_load_idx'];
 	}
 
 	public function getTimeTakeBetweenStops($stop1, $stop2, $routeNum, $hour, $min)

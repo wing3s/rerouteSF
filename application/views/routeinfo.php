@@ -5,7 +5,7 @@ $(function() {
 	var isVisible = false;
     var clickedAway = false;
 	$(".busRoute").popover({
-		placement:'right',
+		placement:'bottom',
 		trigger:'manual',
 		title:'Bus Route',
 		content:"<img src='http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco&amp;size=300x640&amp;maptype=terrain&amp;sensor=false&amp;markers=color:green%7Clabel:S%7C37.791982,-122.408037&amp;markers=color:blue%7Clabel:%7C37.725571,-122.394272&amp;markers=color:green%7Clabel:E%7C37.783537,-122.415641&amp;path=color:0x0000ff%7Cweight:5%7C37.791982,-122.408037%7C37.725571,-122.394272%7C37.783537,-122.415641'>"
@@ -28,7 +28,7 @@ $(function() {
 </script>
 
 <ul class='nav nav-tabs nav-stacked'>
-	<li style='width:600px'>
+	<li style='width:800px'>
 	<a>
 	<div class='row'>
 	<div class='span2'>Route Number</div>
@@ -48,7 +48,7 @@ $(function() {
 			<div class='span2'>".$route['load']."</div>
 			</div>
 			";
-		echo "<li style='width:600px'><a class='busRoute'> $routeRow </a></li>";
+		echo "<li style='width:800px'><a class='busRoute'> $routeRow </a></li>";
 	}
 ?>
 </ul>

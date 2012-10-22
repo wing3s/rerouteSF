@@ -52,7 +52,7 @@ class backend extends CI_Model
              $loadarray[$row['avg_psgr_load_idx']] = $row['avg_psgr_load_idx'];
              $loadarray[$row['avg_seat_load_idx']] = $row['avg_seat_load_idx'];
          }     
-        return 1;
+        return $loadarray;
     }
 
     public function getStopsBetween($stop1,$stop2)

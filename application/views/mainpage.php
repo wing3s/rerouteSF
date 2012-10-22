@@ -21,7 +21,7 @@ body {
 }
 .allContent {
 	position: absolute;
-	width: 600px;
+	width: 1200px;
 }
 </style>
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	var startStop	= "";
 	var endStop		= "";
 	$(".startStop").click(function(){
-		startStop	= $(this).html();
+		startStop	= escape($(this).html());
 		queryURL	= pathname + queryRoute + startStop + "/" + endStop;
 		if(!(endStop==''))
 		{
@@ -50,7 +50,7 @@ $(document).ready(function(){
 		}
 	});
 	$(".endStop").click(function(){
-		endStop		= $(this).html();
+		endStop		= escape($(this).html());
 		console.log(startStop,endStop);
 		console.log(pathname);
 		queryURL	= pathname + queryRoute + startStop + "/" + endStop;

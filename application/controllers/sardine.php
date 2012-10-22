@@ -28,6 +28,8 @@ class sardine extends  CI_Controller
 
 	public function showRoutes($startStop,$endStop)
 	{
+		$startStop	= urldecode($startStop);
+		$endStop	= urldecode($endStop);
 		$startArr	= $this->backend->getNearby($startStop);	
 		$endArr		= $this->backend->getNearby($endStop);
 		$hour 		= date('H');
@@ -41,6 +43,7 @@ class sardine extends  CI_Controller
 		{
 			foreach($endArr as $stop2)
 			{
+				if($stop1 == $stop2) {continue;}
 				$routeNums	= $this->backend->getRoutes($stop1,$stop2);
 				foreach($routeNums as $routeNum)
 				{
